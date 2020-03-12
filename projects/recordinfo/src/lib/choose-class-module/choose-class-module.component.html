@@ -1,0 +1,13 @@
+<nz-tree-select
+    #nzTreeSelect
+    style="width: inherit;"
+    nzPlaceHolder="请选择"
+    [nzDropdownMatchSelectWidth]="true"
+    [nzDropdownStyle]="{ 'max-height': '300px' }"
+    [(ngModel)]="this.selectedItem"
+    [nzNodes]="classList"
+    [nzAsyncData]="true"
+    (nzExpandChange)="onExpandChange($event)"     
+    (ngModelChange)="changeSelect($event)"
+>
+</nz-tree-select>

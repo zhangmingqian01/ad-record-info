@@ -1,0 +1,23 @@
+<form [formGroup]="myForm" (ngSubmit)="createRootCategory()" class="medium--dialog create--unit--dialog--wrap">
+        <div class="medium--dialog">
+            <h2 mat-dialog-title>
+                选择门类</h2>
+            <mat-dialog-content>
+                <div class="dialog--content">
+                    <div class="row--box">                       
+                        <div class="value--box">
+                            <choose-class-module [_dwClassManageServiceGetMetaSysClassList]="data._dwClassManageServiceGetMetaSysClassList" formControlName="metadataSchemeId" id="metadataSchemeId"></choose-class-module>
+                            <mat-error *ngIf="myForm.controls.metadataSchemeId.invalid && myForm.controls.metadataSchemeId.dirty">
+                                {{_formErrorMessageService.getErrorMessage(myForm.controls.metadataSchemeId)}}
+                            </mat-error>
+                        </div>
+                    </div>                   
+                </div>
+            </mat-dialog-content>
+            <mat-dialog-actions>
+                <button mat-button type="button" mat-dialog-close>取消</button>
+                <button mat-flat-button type="submit" color="primary"  [disabled]="!myForm.valid" LoadingButtonController [loading]="loading">确定</button>
+            </mat-dialog-actions>
+            <loading-message *ngIf="loading"></loading-message>
+        </div>
+    </form>

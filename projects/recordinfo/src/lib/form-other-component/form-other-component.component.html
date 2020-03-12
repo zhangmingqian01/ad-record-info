@@ -1,0 +1,9 @@
+<ng-container [ngSwitch]="componentType">
+    <div *ngSwitchCase="'1'">
+        <button mat-stroked-button [disabled]="disableEdit" (click)="chooseCategory()">选择门类</button>
+    </div>
+    <div *ngSwitchCase="'2'">
+        <button mat-stroked-button [disabled]="disableEdit" (click)="selectUser()">选择用户</button>
+    </div>
+    <div *ngSwitchDefault>请选择一个组件</div>
+</ng-container>

@@ -1,0 +1,32 @@
+@charset "utf-8";
+.isSelected{
+    background: #DAE4E9;
+}
+.meta--sys--selected--item--box{
+    display: inline-block;
+    vertical-align: middle;
+    //max-width: 47%;
+    //min-width: 30%;
+    width: 188px;
+    margin-right: 18px;
+    border: 1px solid #cdcdcd;
+    padding: 10px 5px;
+    height: 400px;
+    margin-bottom: 10px;
+    &:last-child{
+        margin-right: 0 !important;
+    }
+    .single--item{
+        padding: 3px 5px;
+        //width: 166px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+.meta--sys--selected--item--wrap{
+    //width: 600px;
+    height: 418px;
+    overflow-x: auto;
+    white-space: nowrap;
+}

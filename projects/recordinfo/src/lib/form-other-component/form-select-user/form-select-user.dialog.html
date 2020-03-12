@@ -1,0 +1,74 @@
+<div class="medium--dialog create--unit--dialog--wrap">
+        <div class="medium--dialog">
+            <h2 mat-dialog-title>
+                选择用户</h2>
+            <mat-dialog-content>
+                    <div class="modal-group-add-membe-body clearfix">
+                            <div class="modal-group-add-member pull-left">
+                                <div class="modal-group-add-member__content">
+                                    <ul class="choose-caret">
+                                        <li (click)="hideOrg=!hideOrg">
+                                            <i class="fa" [ngClass]="{'fa-caret-right':hideOrg,'fa-caret-down':!hideOrg}"></i>
+                                            <span>按组织机构</span>
+                                        </li>
+                                    </ul>
+                                    <div [hidden]="hideOrg" class="every--group--box">
+                                        <ul *ngFor="let organizeList of addUser.orgList" class="modal-group-add-member__content__everyuser">
+                                            <i (click)="getUser(organizeList);organizeList.showUser=!organizeList.showUser" *ngIf="!organizeList.showUser" class="fa fa-plus-square-o dropdown-icon"></i>
+                                            <i (click)="getUser(organizeList);organizeList.showUser=!organizeList.showUser" *ngIf="organizeList.showUser" class="fa fa-minus-square-o dropdown-icon"></i>
+                                            <span class="everyuser-username">{{organizeList.displayName}}</span>
+                                          
+                                            <li (click)="userList.c_isChecked=!userList.c_isChecked;addUserList(userList)" class="modal-group-add-member__content__everyuser-child"
+                                                [hidden]="!organizeList.showUser" *ngFor="let userList of organizeList.userList">
+                                                <span>{{userList.displayName}}</span>
+                                                <i class="fa modal-group-add-member__content__everyuser-icon pull-right" [ngClass]="{'fa-check-circle active' : userList.c_isChecked, 'fa-circle-o' : !userList.c_isChecked}"></i>
+                                            </li>
+                                        </ul>
+                                    </div>
+                        
+                                    <ul class="choose-caret">
+                                        <li (click)="hideRole=!hideRole">
+                                            <i class="fa" [ngClass]="{'fa-caret-right':hideRole,'fa-caret-down':!hideRole}"></i>
+                                            <span>按角色</span>
+                                        </li>
+                                    </ul>
+                                    <div [hidden]="hideRole" class="every--group--box">
+                                        <ul *ngFor="let role of addUser.roleList" class="modal-group-add-member__content__everyuser">
+                                            <i (click)="getUserByRole(role);role.showUser=!role.showUser" *ngIf="!role.showUser" class="fa fa-plus-square-o dropdown-icon"></i>
+                                            <i (click)="getUserByRole(role);role.showUser=!role.showUser" *ngIf="role.showUser" class="fa fa-minus-square-o dropdown-icon"></i>
+                                            <span class="everyuser-username" >{{role.name}}</span>                                           
+                                            <li (click)="userList.c_isChecked=!userList.c_isChecked;addUserList(userList)" class="modal-group-add-member__content__everyuser-child"
+                                                [hidden]="!role.showUser" *ngFor="let userList of role.userList">
+                                                <span>{{userList.displayName}}</span>
+                                                <i class="fa modal-group-add-member__content__everyuser-icon pull-right" [ngClass]="{'fa-check-circle active' : userList.c_isChecked, 'fa-circle-o' : !userList.c_isChecked}"></i>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="modal-group-add-member-result pull-right">
+                                <div class="modal-group-add-member-result__content" >
+                                    <ul>
+                               
+                                        <ng-container *ngFor="let user of addUser.userList">
+                                            <li  *ngIf="user.c_isChecked" class="modal-group-add-member-result__content__everyuser">
+                                                <span>{{user.displayName}}</span>
+                                                <i (click)="user.c_isChecked=false" class="fa fa-times-circle modal-group-add-member-result__content__everyuser-icon pull-right"></i>                                             
+                                            </li>
+                                        </ng-container>
+                                       
+                                    </ul>
+                                </div>
+                        
+                            </div>
+                        </div>
+                        
+            </mat-dialog-content>
+            <mat-dialog-actions>
+                <button mat-button type="button" mat-dialog-close>取消</button>
+                <button mat-flat-button  color="primary" (click)="saveUser()"  LoadingButtonController [loading]="loading">确定</button>
+            </mat-dialog-actions>
+            <loading-message *ngIf="loading"></loading-message>
+        </div>
+    </div>

@@ -1,0 +1,57 @@
+@charset "utf-8";
+/*
+.create--unit--dialog--wrap{
+  .attribute--row--wrap{
+    padding-top: 2px;
+    .attribute--row--box{
+      padding: 5px 0;
+      &__title{
+        display: inline-block;
+        width: 126px;
+        vertical-align: middle;
+        font-weight: normal;
+        position: relative;
+      }
+      &__value{
+        display: inline-block;
+        position: relative;
+        width: calc(100% - 126px);
+        vertical-align: middle;
+      }
+    }
+  }
+}
+.text-danger{
+  position: absolute;
+  left: -10px;
+  top: 3px;
+}*/
+
+.create--unit--dialog--wrap{
+  .dialog--content{
+    padding: 6px 0 25px 0;
+    .row--box{
+      .title{
+        display: inline-block;
+        vertical-align: middle;
+        width: 220px;
+        margin-right: 40px;
+        .prompt{
+          display: block;
+          font-size: 13px;
+          color: #7f7f7f;
+          margin-top: 4px;
+        }
+      }
+      .value--box{
+        display: inline-block;
+        vertical-align: middle;
+        width: calc(100% - 260px);
+        position: relative;
+        choose-class-module{
+          width: 100%;
+        }
+      }
+    }
+  }
+}
