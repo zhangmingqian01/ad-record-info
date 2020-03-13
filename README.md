@@ -1,27 +1,32 @@
-# MyLibrary
+# Recordinfo
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.1.
+record根据xml数据，格式化成可修改的表单
 
-## Development server
+## 1.1.5 正式版 
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+    getMulModifeProPertyValues: (allowedValuesCode: string) => Promise<any> #获取下拉值选项的http请求方法 
 
-## Code scaffolding
+    getDefaultValue: (defaultValue: DefaultValue) => string #获取默认值的方法，非http请求，一般在recordInfo.service中，但需要用到缓存里的信息，所以每个应用都不相同
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+    _DepartmentManageServiceGetList: () => Promise<any> #获取部门列表的http请求方法
 
-## Build
+    _chooseUsersAccessServiceGetRoleList: () => Promise<any> #获取角色列表的请求方法
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+    _chooseUsersAccessServiceGetUserByDept: (groupName: string) => Promise<any> #根据部门id获取用户列表
 
-## Running unit tests
+    _chooseUsersAccessServiceGetUserByRole: (groupName: string) => Promise<any> #根据角色名获取用户列表
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+    _dwClassManageServiceGetMetadataCategoryInfo: (metadataSchemeId: string) => Promise<any> #根据元数据id获取类目信息
 
-## Running end-to-end tests
+    environmentBaseUrl : string #点击文件预览时需要的应用根路由，一般就传enviroment文件里的baseUrl
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+    ApiUrl : enum #api接口枚举类，用于上传组件
+ 
+    baseUrl #上传接口用到的，后台根地址
 
-## Further help
+    AuthenticationService #用户信息的服务，一般在core文件夹中的同名service文件
+    
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## TODO
+
+将所有input属性改为一个大对象，并增加类型说明文件
