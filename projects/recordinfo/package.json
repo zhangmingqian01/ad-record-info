@@ -1,6 +1,10 @@
 {
   "name": "recordinfo",
-  "version": "1.1.2",
+  "version": "1.1.5",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/qichangjun/ad-record-info"
+  },
   "peerDependencies": {
     "@angular/animations": "~7.2.0",
     "@angular/cdk": "~7.3.7",

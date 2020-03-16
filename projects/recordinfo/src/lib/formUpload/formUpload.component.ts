@@ -28,6 +28,7 @@ export class FormUploadComponent implements OnInit {
     ngOnInit() {
         let url 
         this.uploadUrl == 'importRecord' ? url = 'importRecord' : url = 'upload'
+        if (!this.baseUrl || !this.ApiUrl) return 
         this.uploader = new FileUploader({
             autoUpload: true,
             url: this.baseUrl + this.ApiUrl[url],            

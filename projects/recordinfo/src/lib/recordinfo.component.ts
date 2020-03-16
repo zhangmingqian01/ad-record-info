@@ -4,6 +4,7 @@ import * as _ from 'lodash';
 import { Subscription } from 'rxjs';
 import { isArray } from 'util';
 import { Tile, DefaultValue } from './recordTile.class';
+import { ErrorMessage } from './message.enum';
 
 import {
     trigger,
@@ -637,6 +638,20 @@ export class RecordinfoComponent implements OnInit {
         // this.router.navigate(['/previewDoc'], { queryParams: { objectId: res } })
     }
 
+    checkNeedProperty(){
+        if (!this.getMulModifeProPertyValues) console.warn(ErrorMessage.needGetMulModifeProPertyValues)
+        if (!this.getDefaultValue) console.warn(ErrorMessage.getDefaultValue)
+        if (!this._DepartmentManageServiceGetList) console.warn(ErrorMessage._DepartmentManageServiceGetList)
+        if (!this._chooseUsersAccessServiceGetRoleList) console.warn(ErrorMessage._chooseUsersAccessServiceGetRoleList)
+        if (!this._chooseUsersAccessServiceGetUserByDept) console.warn(ErrorMessage._chooseUsersAccessServiceGetUserByDept)
+        if (!this._chooseUsersAccessServiceGetUserByRole) console.warn(ErrorMessage._chooseUsersAccessServiceGetUserByRole)
+        if (!this._dwClassManageServiceGetMetadataCategoryInfo) console.warn(ErrorMessage._dwClassManageServiceGetMetadataCategoryInfo)
+        if (!this.environmentBaseUrl) console.warn(ErrorMessage.environmentBaseUrl)
+        if (!this.ApiUrl) console.warn(ErrorMessage.ApiUrl)
+        if (!this.baseUrl) console.warn(ErrorMessage.baseUrl)
+        if (!this.AuthenticationService) console.warn(ErrorMessage.AuthenticationService)
+    }   
+
     ngOnChanges(changes: { [propertyName: string]: SimpleChange }) {
         if (!this.showTemplateXml) {
             return
@@ -645,6 +660,7 @@ export class RecordinfoComponent implements OnInit {
             this.deletePath = []
             this.tiles = []
             this.entity = {}
+            this.checkNeedProperty()
             this.getTemplateModule()
         }
 

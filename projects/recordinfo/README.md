@@ -2,32 +2,31 @@
 
 record根据xml数据，格式化成可修改的表单
 
-## 1.1.2 正式版 
+## 1.1.5 正式版 
 
-新增了预览文件路径的值
+    getMulModifeProPertyValues: (allowedValuesCode: string) => Promise<any> #获取下拉值选项的http请求方法 
 
-修复了formUpload没有样式的问题,上传按钮的样式
+    getDefaultValue: (defaultValue: DefaultValue) => string #获取默认值的方法，非http请求，一般在recordInfo.service中，但需要用到缓存里的信息，所以每个应用都不相同
 
-添加了对ant-design的依赖。
+    _DepartmentManageServiceGetList: () => Promise<any> #获取部门列表的http请求方法
 
-解决了图片根据名字显示的功能。
+    _chooseUsersAccessServiceGetRoleList: () => Promise<any> #获取角色列表的请求方法
 
-解决了下拉值需要获取后台返回的值来显示的功能。
+    _chooseUsersAccessServiceGetUserByDept: (groupName: string) => Promise<any> #根据部门id获取用户列表
 
-解决了table数据格式化指令缺失的问题。
+    _chooseUsersAccessServiceGetUserByRole: (groupName: string) => Promise<any> #根据角色名获取用户列表
 
-解决了对所有著录组件的依赖
+    _dwClassManageServiceGetMetadataCategoryInfo: (metadataSchemeId: string) => Promise<any> #根据元数据id获取类目信息
 
-需要对http服务进行绑定
-    @Input() getMulModifeProPertyValues: (allowedValuesCode: string) => Promise<any>
-    @Input() getDefaultValue: (defaultValue: DefaultValue) => string
+    environmentBaseUrl : string #点击文件预览时需要的应用根路由，一般就传enviroment文件里的baseUrl
 
-    @Input() _DepartmentManageServiceGetList: () => Promise<any>
-    @Input() _chooseUsersAccessServiceGetRoleList: () => Promise<any>
-    @Input() _chooseUsersAccessServiceGetUserByDept: (groupName: string) => Promise<any>
-    @Input() _chooseUsersAccessServiceGetUserByRole: (groupName: string) => Promise<any>
-    @Input() _dwClassManageServiceGetMetadataCategoryInfo: (metadataSchemeId: string) => Promise<any>
+    ApiUrl : enum #api接口枚举类，用于上传组件
+ 
+    baseUrl #上传接口用到的，后台根地址
+
+    AuthenticationService #用户信息的服务，一般在core文件夹中的同名service文件
+    
 
 ## TODO
 
-目前没有要加的新功能
+将所有input属性改为一个大对象，并增加类型说明文件

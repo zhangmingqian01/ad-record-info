@@ -26,7 +26,7 @@ export class FormSelectUserDialog implements OnInit{
         @Inject(MAT_DIALOG_DATA) public data
     ) { }
 
-    ngOnInit() {        
+    ngOnInit() {             
         this.addUser.saveList = this.data.saveUser
         this.getDeptList()
         

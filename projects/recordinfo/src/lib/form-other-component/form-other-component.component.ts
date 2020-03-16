@@ -31,6 +31,7 @@ export class FormOtherCompComponent implements OnInit {
   }
 
   chooseCategory(){
+    if (!this._dwClassManageServiceGetMetadataCategoryInfo || !this._dwClassManageServiceGetMetaSysClassList) return 
     let dialogRef = this.dialog.open(FormChooseCategoryDialog, {
       width: '',
       disableClose: true,
@@ -49,6 +50,7 @@ export class FormOtherCompComponent implements OnInit {
   }
 
   selectUser(){
+    if (!this._DepartmentManageServiceGetList || !this._chooseUsersAccessServiceGetRoleList || !this._chooseUsersAccessServiceGetUserByDept || !this._chooseUsersAccessServiceGetUserByRole) return 
     let saveUser = []
     let user_idLists = this.entity[this.valueAttrName] ? this.entity[this.valueAttrName].split(',') : []
     let user_nameLists = this.entity[this.keyAttrName] ? this.entity[this.keyAttrName].split(',') : []
