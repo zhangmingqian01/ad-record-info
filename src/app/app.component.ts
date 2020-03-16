@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AppService } from './app.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,26 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'myLibrary';
+  editStatus: boolean = false;
+  jsonMetadataTemplate: any = undefined
+  showTemplateXml: any = undefined
+  loading: boolean = false
+  info: any = {}
+  constructor(
+    public _AppService : AppService,
+  ){
+
+  }
+  ngOnInit(){
+    this.getRecordInfo()
+  }
+
+  async getRecordInfo(){
+    let res = await this._AppService.getRecordInfo()
+    res.jsonMetadata = JSON.parse(res.jsonMetadata)
+    this.jsonMetadataTemplate = res.jsonMetadata
+    this.showTemplateXml = res.showTemplateXml
+    this.editStatus = false
+  }
+  
 }
