@@ -9,5 +9,6 @@ export enum ErrorMessage {
     environmentBaseUrl = '您没有绑定environmentBaseUrl属性，这江导致你的附件预览功能无法使用',
     ApiUrl = '您没有绑定ApiUrl属性，浙江导致你的上传组件无法使用',
     baseUrl = '您没有绑定baseUrl属性，浙江导致你的上传组件无法使用',
-    AuthenticationService = '您没有绑定AuthenticationService属性，浙江导致你的上传组件无法使用',    
+    AuthenticationService = '您没有绑定AuthenticationService属性，浙江导致你的上传组件无法使用',  
+    ObjectPath = '没有传入reocrd的objectPaht,将导致文件无法预览'  
 }

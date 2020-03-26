@@ -188,6 +188,7 @@ export class RecordinfoComponent implements OnInit {
     progressNodes: any[] = []
     validPass : boolean = true 
     @Input() id: string;
+    @Input() objectPath : string;
     @Input() disableEdit: boolean;
     @Input() serverFiles: Array<any>;
     @Input() showTemplateXml: any;
@@ -632,7 +633,7 @@ export class RecordinfoComponent implements OnInit {
     async previewDoc(url) {
         let preview_window = window.open('')
         // let res = await this._RecordInfoService.getDocumentId(this.id, url)
-        let objectId = this.id + url
+        let objectId = this.objectPath + url
         objectId = objectId.replace('\\', '/')
         preview_window.location.href = `${this.environmentBaseUrl}previewDoc?objectId=${objectId}&recordId=${this.id}`
         // this.router.navigate(['/previewDoc'], { queryParams: { objectId: res } })
@@ -650,6 +651,7 @@ export class RecordinfoComponent implements OnInit {
         if (!this.ApiUrl) console.warn(ErrorMessage.ApiUrl)
         if (!this.baseUrl) console.warn(ErrorMessage.baseUrl)
         if (!this.AuthenticationService) console.warn(ErrorMessage.AuthenticationService)
+        if (!this.objectPath) console.warn(ErrorMessage.ObjectPath)
     }   
 
     ngOnChanges(changes: { [propertyName: string]: SimpleChange }) {

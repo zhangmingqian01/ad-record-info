@@ -1,0 +1,86 @@
+
+
+{
+    
+    "/businessapi": {
+      "target": {
+          "host" : "demo.docworks.cn",
+          "protocol" : "http",
+          "port" : "80"
+      },
+      "secure": false,
+      "changeOrigin": true,
+       "logLevel": "info"
+    },
+
+    "/foundationapi": {
+      "target": {
+          "host" : "demo.docworks.cn",
+          "protocol" : "http",
+          "port" : "80"
+      },
+      "secure": false,
+      "changeOrigin": true,
+       "logLevel": "info"
+    },
+    "/metadataapi":{
+        "target": {
+            "host" : "demo.docworks.cn",
+            "protocol" : "http",
+            "port" : "80"
+        },
+        "secure": false,
+        "changeOrigin": true,
+         "logLevel": "info" 
+    },
+    "/adminapi":{
+        "target": {
+            "host" : "demo.docworks.cn",
+            "protocol" : "http",
+            "port" : "80"
+        },
+        "secure": false,
+        "changeOrigin": true,
+         "logLevel": "info" 
+    },
+    "/formatapi":{
+        "target": {
+            "host" : "47.98.246.148",
+            "protocol" : "http",
+            "port" : "80"
+        },
+        "secure": false,
+        "changeOrigin": true,
+         "logLevel": "info" 
+    },
+    "/tdrapi":{
+        "target": {
+            "host" : "amberdata.cn",
+            "protocol" : "http",
+            "port" : "80"
+        },
+        "secure": false,
+        "changeOrigin": true,
+         "logLevel": "info" 
+    },
+    "/gs-guide-websocket":{
+        "target": {
+            "host" : "192.168.31.1",
+            "protocol" : "http",
+            "port" : "80"
+        },
+        "secure": false,
+        "changeOrigin": true,
+         "logLevel": "info" 
+    },
+    "/osprey":{
+        "target": {
+            "host" : "demo.amberdata.cn",
+            "protocol" : "http",
+            "port" : "80"
+        },
+        "secure": false,
+        "changeOrigin": true,
+         "logLevel": "info" 
+    }
+}
