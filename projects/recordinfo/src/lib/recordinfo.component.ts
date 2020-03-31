@@ -248,7 +248,7 @@ export class RecordinfoComponent implements OnInit {
             if (!this.entity[filePathName]) this.entity[filePathName] = []      
             this.serverFiles.forEach(file => {
                 file.isChoosed = true 
-                this.entity['$.record.block.file'].push({
+                this.entity[filePathName].push({
                     'size': file['s_content_size'],
                     'name': file['s_object_name'],
                     'md5': file['s_md5'],

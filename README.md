@@ -2,7 +2,7 @@
 
 record根据xml数据，格式化成可修改的表单
 
-## 1.1.5 正式版 
+## 1.1.8 正式版 
 
     getMulModifeProPertyValues: (allowedValuesCode: string) => Promise<any> #获取下拉值选项的http请求方法 
 
@@ -26,7 +26,9 @@ record根据xml数据，格式化成可修改的表单
 
     AuthenticationService #用户信息的服务，一般在core文件夹中的同名service文件
     
+    objectPath : record上的s_object_path,用于预览文件
 
+    修改了选择服务器附件上传的功能无法使用的情况
 ## TODO
 
 将所有input属性改为一个大对象，并增加类型说明文件
