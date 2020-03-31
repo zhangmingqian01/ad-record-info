@@ -233,8 +233,21 @@ export class RecordinfoComponent implements OnInit {
             this.jsonData = json
             this.getShowTemplate()
             this.formatShowJson(this.jsonData.record)
-            if (!this.entity['$.record.block.file']) this.entity['$.record.block.file'] = []
+            let filePathName = undefined
+            let showTempalteRows = this.xotree.parseXML(this.showTemplateXml).data.saveData
+            showTempalteRows.forEach(c => {
+                if (c.attrName == "$.record.block[?(@.name=='电子文件')].file"){
+                    filePathName = "$.record.block[?(@.name=='电子文件')].file"
+                }else if (c.attrName == "$.record.block.file"){
+                    filePathName = "$.record.block.file"
+                }
+            });
+            if (!filePathName){
+                return 
+            }      
+            if (!this.entity[filePathName]) this.entity[filePathName] = []      
             this.serverFiles.forEach(file => {
+                file.isChoosed = true 
                 this.entity['$.record.block.file'].push({
                     'size': file['s_content_size'],
                     'name': file['s_object_name'],
@@ -626,6 +639,10 @@ export class RecordinfoComponent implements OnInit {
     }
 
     deleteFile(tile, file, i) {
+        let serverFile = this.serverFiles.find(c=>c.s_md5 == file.md5)
+        if (serverFile){
+            serverFile.isChoosed = false 
+        }
         this.entity[tile.options.attrName].splice(i, 1)
         this.deletePath.push(file['url'])
     }
