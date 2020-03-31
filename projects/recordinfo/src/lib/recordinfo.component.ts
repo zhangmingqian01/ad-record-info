@@ -87,7 +87,7 @@ declare var JSONPath: any;
                     </div>
                     <div class="upload--data--list--box">
                         <div  *ngFor="let file of entity[tile.options.attrName];let i = index" class="single--data">
-                            <img class="file--type--icon"  src="./assets/images/icon/{{file['name'] | fileNameToIcon}}.svg"
+                            <img class="file--type--icon" onerror="this.src='./assets/images/icon/unknown.svg'" src="./assets/images/icon/{{file['name'] | fileNameToIcon}}.svg"
                                 alt="">
                             <span *ngIf="file.isNew" class="file--name">
                                 {{file['name']}}

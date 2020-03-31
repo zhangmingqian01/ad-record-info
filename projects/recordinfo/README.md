@@ -2,7 +2,7 @@
 
 record根据xml数据，格式化成可修改的表单
 
-## 1.1.9 正式版 
+## 1.2.1 正式版 
 
     getMulModifeProPertyValues: (allowedValuesCode: string) => Promise<any> #获取下拉值选项的http请求方法 
 
