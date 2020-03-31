@@ -13,9 +13,12 @@ export class AppService {
   getRecordInfo() : Promise<any> {
     let params = new URLSearchParams();
     let headers = new Headers()
-    headers.append('accessToken','ce7bfe102db846aa94f4fdc025fc7f4f')         
-    params.set('id','/桐庐档案馆/接收管理库/馆藏档案/WS.文书档案/A.文书档案（件）/d1318c47-5ba7-4e57-953b-e3aa9a4865d1')    
-    return this.http.get('./tdrapi/record/get_record_details',{ headers:headers,search: params })
+    headers.append('accessToken','8ae6829154ef58b02402260dd190ef1d')         
+    params.set('parentId','/金华市人民检察院/文件整理/2018/WS.文书档案/A.文书档案（件）')  
+    params.set('collectionWay','record') 
+    params.set('actionType','1') 
+    params.set('sceneCode','erms_zljh') 
+    return this.http.get('./ermsapi/metadata/get_form_base_info',{ headers:headers,search: params })
                     .toPromise()
                     .then(res =>{
                         let body = res.json();

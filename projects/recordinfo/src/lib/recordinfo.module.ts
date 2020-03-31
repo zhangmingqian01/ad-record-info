@@ -24,7 +24,7 @@ import { FormChooseCategoryDialog } from './form-other-component/form-choose-cat
 import { LoadingMessageComponent } from './loadingMessage/loadingMessage.component';
 import { LoadingButtonControllerDirective } from './loadingButton.directive';
 import { chooseClassModuleContentComponent } from './choose-class-module/choose-class-module.component';
-import { FileUploadModule } from 'ng2-file-upload/ng2-file-upload';
+import { FileUploadModule } from 'ng2-file-upload';
 import { FormUploadComponent } from './formUpload/formUpload.component';
 import { Sizefilter } from './size.pipe';
 

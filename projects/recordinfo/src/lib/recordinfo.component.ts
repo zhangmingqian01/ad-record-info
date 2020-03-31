@@ -87,7 +87,7 @@ declare var JSONPath: any;
                     </div>
                     <div class="upload--data--list--box">
                         <div  *ngFor="let file of entity[tile.options.attrName];let i = index" class="single--data">
-                            <img class="file--type--icon" onerror="this.src='assets/images/icon/unknown.svg'" src="./assets/images/icon/{{file['name'] | fileNameToIcon}}.svg"
+                            <img class="file--type--icon"  src="./assets/images/icon/{{file['name'] | fileNameToIcon}}.svg"
                                 alt="">
                             <span *ngIf="file.isNew" class="file--name">
                                 {{file['name']}}
@@ -150,7 +150,9 @@ declare var JSONPath: any;
                 </div>
                 <div *ngSwitchCase="'logo'" class="form--build--box--input--box">
                     <img style="height: 100%;
-                    width: 100%;" onerror="this.src = './assets/images/icon-40.png'" [src]="tile.options.logoSrc" alt="">
+                    width: 100%;" 
+                    onerror="this.src = './assets/images/icon-40.png'"
+                     [src]="tile.options.logoSrc" alt="">
                 </div>
                 <div *ngSwitchCase="'other-component'" class="form--build--box--input--box">
                     <form-other-component
@@ -252,10 +254,10 @@ export class RecordinfoComponent implements OnInit {
                     'size': file['s_content_size'],
                     'name': file['s_object_name'],
                     'md5': file['s_md5'],
-                    'url': 'repo:' + file['jcr:path'],
+                    'url': 'repo:' + file['s_object_id'],
                     'isNew': true
                 })
-            })
+            })            
             this.loading = false
         } catch (err) {
             console.error(err)
@@ -571,7 +573,7 @@ export class RecordinfoComponent implements OnInit {
                 if (!this.saveEntity[key] || this.saveEntity[key].length == 0) {
                     continue
                 }
-                if (isArray(this.saveEntity[key]) && this.saveEntity[key].length > 0 && this.saveEntity[key][0].url && this.saveEntity[key][0].md5) {
+                if (isArray(this.saveEntity[key]) && this.saveEntity[key].length > 0 && this.saveEntity[key][0].url) {
                     if (result[0].parentProperty == 'file') {
                         result[0].parent[result[0].parentProperty] = _.castArray(result[0].parent[result[0].parentProperty])
                         this.saveEntity[key].forEach(c => {

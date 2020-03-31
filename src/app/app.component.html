@@ -1,5 +1,7 @@
 <amberdata-recordinfo #appRecord [disableEdit]="!editStatus" 
   class="show--template--content--box" [id]="id" 
- [showTemplateXml]="showTemplateXml" [jsonMetadataTemplate]="jsonMetadataTemplate"  
+ [showTemplateXml]="showTemplateXml" [jsonMetadataTemplate]="jsonMetadataTemplate" 
+ [serverFiles] ="files"
  [info]="info" >
 </amberdata-recordinfo>
+<button (click)="editRecord()">xxx</button>

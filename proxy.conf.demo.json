@@ -53,7 +53,7 @@
         "changeOrigin": true,
          "logLevel": "info" 
     },
-    "/tdrapi":{
+    "/ermsapi":{
         "target": {
             "host" : "amberdata.cn",
             "protocol" : "http",
