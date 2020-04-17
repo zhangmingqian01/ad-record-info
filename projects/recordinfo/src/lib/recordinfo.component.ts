@@ -429,6 +429,11 @@ export class RecordinfoComponent implements OnInit {
         this.tiles.forEach((tile: Tile) => {
             tile.options.scene = tile.options.scene || ''
             if (!tile.options.scene) {
+                if (tile.options.isRequired == 'true' && !this.entity[tile.options.attrName]) {
+                    validPass = false
+                } else if (tile.options.valueType == 'int' && _.isNumber(this.entity[tile.options.attrName])) {
+                    validPass = false
+                }
                 return
             }
             if (tile.options.scene.indexOf(this.scene) != -1) {

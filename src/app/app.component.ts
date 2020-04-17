@@ -41,7 +41,7 @@ export class AppComponent {
 
   async getRecordInfo(){
     let res = await this._AppService.getRecordInfo()
-    res.jsonMetadata = JSON.parse(res.jsonMetadataTemplate)
+    res.jsonMetadata = JSON.parse(res.jsonMetadata)
     this.jsonMetadataTemplate = res.jsonMetadata
     this.showTemplateXml = res.showTemplateXml
     this.editStatus = false

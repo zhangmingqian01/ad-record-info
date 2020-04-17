@@ -2,7 +2,11 @@
 
 record根据xml数据，格式化成可修改的表单
 
-## 1.2.111 正式版 
+## 1.2.113 正式版 
+
+    修复了空值无法保存的问题
+
+    不管有无业务场景都进行校验
 
     getMulModifeProPertyValues: (allowedValuesCode: string) => Promise<any> #获取下拉值选项的http请求方法 
 

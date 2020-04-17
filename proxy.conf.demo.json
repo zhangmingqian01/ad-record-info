@@ -73,9 +73,9 @@
         "changeOrigin": true,
          "logLevel": "info" 
     },
-    "/osprey":{
+    "/tdrapi":{
         "target": {
-            "host" : "demo.amberdata.cn",
+            "host" : "app.amberdata.cn",
             "protocol" : "http",
             "port" : "80"
         },
