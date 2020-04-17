@@ -13,8 +13,8 @@ export class AppService {
   getRecordInfo() : Promise<any> {
     let params = new URLSearchParams();
     let headers = new Headers()
-    headers.append('accessToken','646b2f0e94cfadb9813fe9002f281897')         
-    params.set('id','bf831966990565380')    
+    headers.append('accessToken','85890db2e8a2fdce31dd73e39d07c437')         
+    params.set('id','bf832091683553280')    
     return this.http.get('./tdrapi/record/get_record_details',{ headers:headers,search: params })
                     .toPromise()
                     .then(res =>{

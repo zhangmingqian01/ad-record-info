@@ -428,7 +428,7 @@ export class RecordinfoComponent implements OnInit {
         var validPass = true
         this.tiles.forEach((tile: Tile) => {
             tile.options.scene = tile.options.scene || ''
-            if (!tile.options.scene) {
+            if (!tile.options.scene) {                
                 if (tile.options.isRequired == 'true' && !this.entity[tile.options.attrName]) {
                     validPass = false
                 } else if (tile.options.valueType == 'int' && _.isNumber(this.entity[tile.options.attrName])) {
