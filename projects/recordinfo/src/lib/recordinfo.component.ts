@@ -575,8 +575,11 @@ export class RecordinfoComponent implements OnInit {
                         }
                     }
                 }
-                if (!this.saveEntity[key] || this.saveEntity[key].length == 0) {
+                if (!this.saveEntity[key] ) {
                     result[0].parent[result[0].parentProperty] = this.saveEntity[key]
+                    continue
+                }
+                if (this.saveEntity[key].length == 0){
                     continue
                 }
                 if (isArray(this.saveEntity[key]) && this.saveEntity[key].length > 0 && this.saveEntity[key][0].url) {
