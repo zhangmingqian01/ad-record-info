@@ -253,7 +253,8 @@ export class RecordinfoComponent implements OnInit {
                 this.entity[filePathName].push({
                     'size': file['s_content_size'],
                     'name': file['s_object_name'],
-                    'md5': file['s_md5'],
+                    'checksumType' : 'md5',
+                    'checksum' : file['s_md5'],                    
                     'url': 'repo:' + file['s_object_id'],
                     'isNew': true
                 })
@@ -356,9 +357,8 @@ export class RecordinfoComponent implements OnInit {
                     if (Array.isArray(files[0])) {
                         files = files[0]
                     }
-                    files.forEach(file => {
-                        // && !this.entity[c.attrName].find(f => f.md5 == file.md5)
-                        if (file.name && file.md5) {
+                    files.forEach(file => {                        
+                        if (file.name && file.checksumType=="md5" ) {
                             this.entity[c.attrName].push(file)
                         }
                     });
@@ -470,10 +470,10 @@ export class RecordinfoComponent implements OnInit {
     deleteEmptyFile(jsonData) {
         if (jsonData.file && Array.isArray(jsonData.file)) {
             _.remove(jsonData.file, (c => {
-                return !c['size'] && !c['name'] && !c['md5']
+                return !c['size'] && !c['name'] && c.checksumType!="md5" 
             }))
         } else if (jsonData.file && !Array.isArray(jsonData.file)) {
-            if (!jsonData.file.size && !jsonData.file.name && !jsonData.file.md5) {
+            if (!jsonData.file.size && !jsonData.file.name && jsonData.file.checksumType!="md5" ) {
                 jsonData.file = []
             }
         }
@@ -592,7 +592,7 @@ export class RecordinfoComponent implements OnInit {
                             // }else{
                             //     c.type = result[0].value.type
                             // }                            
-                            if (!result[0].parent[result[0].parentProperty].find(file => file.md5 == c.md5)) {
+                            if (!result[0].parent[result[0].parentProperty].find(file => file.checksum == c.checksum)) {
                                 result[0].parent[result[0].parentProperty].push(c)
                             }
                         });
@@ -628,7 +628,8 @@ export class RecordinfoComponent implements OnInit {
             'url': 'local:' + data.storagePath,
             'size': size,
             'name': name,
-            'md5': data.md5,
+            'checksumType' : "md5" ,
+            'checksum': data.md5,
             'isNew': true
         })
     }
@@ -650,7 +651,7 @@ export class RecordinfoComponent implements OnInit {
     }
 
     deleteFile(tile, file, i) {
-        let serverFile = this.serverFiles.find(c=>c.s_md5 == file.md5)
+        let serverFile = this.serverFiles.find(c=>c.s_md5 == file.checksum)
         if (serverFile){
             serverFile.isChoosed = false 
         }
