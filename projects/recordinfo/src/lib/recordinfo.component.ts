@@ -254,7 +254,7 @@ export class RecordinfoComponent implements OnInit {
                 this.entity[filePathName].push({
                     'size': file['s_content_size'],
                     'name': file['s_object_name'],
-                    'checksumType' : 'md5',
+                    'checksum_type' : 'md5',
                     'checksum' : file['s_md5'],                    
                     'url': 'repo:' + file['s_object_id'],
                     'isNew': true,
@@ -362,7 +362,7 @@ export class RecordinfoComponent implements OnInit {
                         files = files[0]
                     }
                     files.forEach(file => {                        
-                        if (file.name && file.checksumType=="md5" ) {
+                        if (file.name && file.checksum_type=="md5" ) {
                             this.entity[c.attrName].push(file)
                         }
                     });
@@ -474,10 +474,10 @@ export class RecordinfoComponent implements OnInit {
     deleteEmptyFile(jsonData) {
         if (jsonData.file && Array.isArray(jsonData.file)) {
             _.remove(jsonData.file, (c => {
-                return !c['size'] && !c['name'] && c.checksumType!="md5" 
+                return !c['size'] && !c['name'] && c.checksum_type!="md5" 
             }))
         } else if (jsonData.file && !Array.isArray(jsonData.file)) {
-            if (!jsonData.file.size && !jsonData.file.name && jsonData.file.checksumType!="md5" ) {
+            if (!jsonData.file.size && !jsonData.file.name && jsonData.file.checksum_type!="md5" ) {
                 jsonData.file = []
             }
         }
@@ -639,7 +639,7 @@ export class RecordinfoComponent implements OnInit {
             'url': 'local:' + data.storagePath,
             'size': size,
             'name': name,
-            'checksumType' : "md5" ,
+            'checksum_type' : "md5" ,
             'checksum': data.md5,
             'isNew': true,
             'format' : format,
