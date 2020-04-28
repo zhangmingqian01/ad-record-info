@@ -45,7 +45,7 @@ export class AppComponent {
 
   async getRecordInfo(){
     let res = await this._AppService.getRecordInfo()
-    res.jsonMetadata = JSON.parse(res.jsonMetadata)
+    res.jsonMetadata = JSON.parse(res.jsonMetadataTemplate)
     this.jsonMetadataTemplate = res.jsonMetadata
     this.showTemplateXml = res.showTemplateXml
     this.editStatus = false
@@ -53,6 +53,7 @@ export class AppComponent {
   
   async editRecord(){
     let validPass = await this.appRecord.editRecord()//公用
+    console.log(validPass)
     let documentIds :Array<any> = []
     if (this.files && this.files.length > 0) {
       documentIds = this.files.filter((c:any) => c.isChoosed).map(c => c['jcr:path'])

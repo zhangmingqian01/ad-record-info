@@ -16,7 +16,7 @@ export class FormValidPassDirective implements OnInit, OnChanges {
     checkValid(value, option: TileOptions) {
         this.validErrorMessage.remove()
         this.validErrorMessage.classList.add('validMessage') 
-        if (option.scene.indexOf(this.scene) != -1 || !this.scene){
+        if (option.scene.indexOf(this.scene) != -1 || !this.scene || !option.scene){
             if (!value && option.isRequired == 'true') {
                 if(this.validErrorMessage.innerText!='不能为空'){
                     this.validErrorMessage.innerText = '不能为空'

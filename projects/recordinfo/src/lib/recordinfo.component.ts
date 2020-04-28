@@ -324,6 +324,7 @@ export class RecordinfoComponent implements OnInit {
         this.formWidth = Number(this.xotree.parseXML(this.showTemplateXml).data.formWidth) || 700
         let data = this.xotree.parseXML(xmlData).data.saveData
         data.forEach(option => {
+            console.log(option)
             if (!option.style) option.style = {}
             option.radioBtnAttrs = _.castArray(option.radioBtnAttrs);
             option.checkBoxAttrs = _.castArray(option.checkBoxAttrs);
@@ -430,10 +431,12 @@ export class RecordinfoComponent implements OnInit {
 
     checkFormValidator() {
         var validPass = true
-        this.tiles.forEach((tile: Tile) => {
+        this.tiles.forEach((tile: Tile) => {            
             tile.options.scene = tile.options.scene || ''
             if (!tile.options.scene) {                
+                // console.log(tile.options.isRequired)
                 if (tile.options.isRequired == 'true' && !this.entity[tile.options.attrName]) {
+                    console.log(this.entity[tile.options.attrName])
                     validPass = false
                 } else if (tile.options.valueType == 'int' && _.isNumber(this.entity[tile.options.attrName])) {
                     validPass = false
@@ -711,3 +714,6 @@ export class RecordinfoComponent implements OnInit {
 
     }
 }
+
+
+

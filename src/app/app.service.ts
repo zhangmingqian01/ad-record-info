@@ -13,9 +13,12 @@ export class AppService {
   getRecordInfo() : Promise<any> {
     let params = new URLSearchParams();
     let headers = new Headers()
-    headers.append('accessToken','1c821196a887d8a3d1a0bd85082200a1')         
-    params.set('id','bf832598895493120')    
-    return this.http.get('./ermsapi/record/get_record_details',{ headers:headers,search: params })
+    headers.append('accessToken','0d1c269a5ca5abec14c0dff22ec4319e')         
+    params.set('parentId','bf832558718222336')  
+    params.set('collectionWay','record')
+    params.set('actionType','1')
+    params.set('sceneCode','erms_zljh')      
+    return this.http.get('./ermsapi/metadata/get_form_base_info',{ headers:headers,search: params })
                     .toPromise()
                     .then(res =>{
                         let body = res.json();

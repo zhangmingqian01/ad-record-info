@@ -28,14 +28,13 @@ export class FormUploadComponent implements OnInit {
     ngOnInit() {
         let url 
         this.uploadUrl == 'importRecord' ? url = 'importRecord' : url = 'upload'
-        // if (!this.baseUrl || !this.ApiUrl) return 
+        if (!this.baseUrl || !this.ApiUrl) return 
         this.uploader = new FileUploader({
             autoUpload: true,
-            // url: this.baseUrl + this.ApiUrl[url],   
-            url : '/ermsapi/resource/upload_file',
+            url: this.baseUrl + this.ApiUrl[url],   
+            // url : '/ermsapi/resource/upload_file',
             headers : [
-                {name : 'accessToken',value :'1c821196a887d8a3d1a0bd85082200a1'}
-                //  this.AuthenticationService.getAccessToken()}
+                {name : 'accessToken',value : this.AuthenticationService.getAccessToken()}
               ]
             ,additionalParameter: {        
             },
