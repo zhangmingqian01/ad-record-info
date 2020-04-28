@@ -2,7 +2,21 @@
 
 record根据xml数据，格式化成可修改的表单
 
-## 1.1.8 正式版 
+## 1.2.118
+    添加了文件的创建日期，修改日期，依赖于moment.js
+    添加了文件的seq,format属性
+
+## 1.2.117 
+
+    电子文件内结构变化,电子文件file上固定属性md5=“xxx”,调整为：checksumType="md5" checksum="b3d6d9c8517e88055bd8b1736eade1c2" 
+
+## 1.2.116  
+
+    修复了空值无法保存的问题
+
+    修复了空文件著录没有文件对象的问题
+
+    不管有无业务场景都进行校验
 
     getMulModifeProPertyValues: (allowedValuesCode: string) => Promise<any> #获取下拉值选项的http请求方法 
 
@@ -32,5 +46,3 @@ record根据xml数据，格式化成可修改的表单
 ## TODO
 
 将所有input属性改为一个大对象，并增加类型说明文件
-
-

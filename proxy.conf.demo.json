@@ -55,7 +55,7 @@
     },
     "/ermsapi":{
         "target": {
-            "host" : "amberdata.cn",
+            "host" : "app.amberdata.cn",
             "protocol" : "http",
             "port" : "80"
         },

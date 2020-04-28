@@ -13,12 +13,15 @@ export class AppComponent {
   showTemplateXml: any = undefined
   loading: boolean = false
   info: any = {}
-  files = [{s_modify_date: "2020-03-18T20:44:05.470+08:00",
+  files = [
+    {s_modify_date: "2020-03-18T20:44:05.470+08:00",
   'jcr:created': "2020-03-18T20:44:05.468+08:00",
   'jcr:path': "/金华市人民检察院/文件收集/部门文件/监察部/02155e5f-5b6f-4af1-8034-70cfb0fec602",
   'category_code': "WS·A",
+  's_md5' : 'asdawdawdawdaw',
   'jcr:createdBy': "朱占豪",
   'jcr:primaryType': "da_record",
+  's_object_id':'asdadawdawdaw',
   s_object_name: "02155e5f-5b6f-4af1-8034-70cfb0fec602",
   title: "dd"},
   {s_modify_date: "2020-03-16T17:33:28.463+08:00",
@@ -26,6 +29,7 @@ export class AppComponent {
   s_md5: "e441a079dc72f24f0314534cf17927a7",
   'jcr:path': "/金华市人民检察院/文件收集/部门文件/监察部/导入少两文件集.xlsx",
   s_content_size: "15572",
+  's_object_id':'dqwdqwdqwdqwdqw',
   'jcr:createdBy': "朱占豪",
   'jcr:primaryType': "da_document",
   s_object_name: "导入少两文件集.xlsx"}

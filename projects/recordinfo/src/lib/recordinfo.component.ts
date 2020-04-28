@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 import { isArray } from 'util';
 import { Tile, DefaultValue } from './recordTile.class';
 import { ErrorMessage } from './message.enum';
-
+import * as _moment from 'moment';
 import {
     trigger,
     state,
@@ -238,11 +238,9 @@ export class RecordinfoComponent implements OnInit {
             let filePathName = undefined
             let showTempalteRows = this.xotree.parseXML(this.showTemplateXml).data.saveData
             showTempalteRows.forEach(c => {
-                if (c.attrName == "$.record.block[?(@.name=='电子文件')].file"){
-                    filePathName = "$.record.block[?(@.name=='电子文件')].file"
-                }else if (c.attrName == "$.record.block.file"){
-                    filePathName = "$.record.block.file"
-                }
+                filePathName = c.attrName == "$.record.block[?(@.name=='电子文件')].file" ? "$.record.block[?(@.name=='电子文件')].file" :
+                c.attrName == "$.record.block.file" ? "$.record.block.file" :
+                undefined
             });
             if (!filePathName){
                 return 
@@ -250,15 +248,20 @@ export class RecordinfoComponent implements OnInit {
             if (!this.entity[filePathName]) this.entity[filePathName] = []      
             this.serverFiles.forEach(file => {
                 file.isChoosed = true 
+                let format = file['s_object_name'].split('.')
+                format = format[format.length - 1]
                 this.entity[filePathName].push({
                     'size': file['s_content_size'],
                     'name': file['s_object_name'],
                     'checksumType' : 'md5',
                     'checksum' : file['s_md5'],                    
                     'url': 'repo:' + file['s_object_id'],
-                    'isNew': true
+                    'isNew': true,
+                    'format' : format,
+                    'creation_date': _moment(new Date()).format(_moment.HTML5_FMT.DATETIME_LOCAL),
+                    'modify_date' : _moment(new Date()).format(_moment.HTML5_FMT.DATETIME_LOCAL)
                 })
-            })            
+            })        
             this.loading = false
         } catch (err) {
             console.error(err)
@@ -301,7 +304,9 @@ export class RecordinfoComponent implements OnInit {
                     copyBlock.property.forEach(property => {
                         property.content = []
                         blocks.forEach(repeat_block => {
-                            property.content.push(repeat_block.property.find(pro => pro.name == property.name).content)
+                            property.content.push(
+                                repeat_block.property.find(pro => pro.name == property.name).content
+                            )
                         });
                     });
                     jsonData.block.push(copyBlock)
@@ -328,11 +333,9 @@ export class RecordinfoComponent implements OnInit {
         data.forEach(c => {
             if (c.keyAttrName) {
                 if (c.contentType != 'table' && c.contentType != 'upload') {
-                    if (jsonPath(this.jsonData, c.keyAttrName) !== false) {
-                        this.entity[c.keyAttrName] = jsonPath(this.jsonData, c.keyAttrName)[0]
-                    } else {
-                        this.entity[c.keyAttrName] = ''
-                    }
+                    this.entity[c.keyAttrName] = jsonPath(this.jsonData, c.keyAttrName) !== false ? 
+                    jsonPath(this.jsonData, c.keyAttrName)[0] :
+                    ''         
                 }
             }
             if (c.attrName) {
@@ -585,8 +588,11 @@ export class RecordinfoComponent implements OnInit {
                 if (isArray(this.saveEntity[key]) && this.saveEntity[key].length > 0 && this.saveEntity[key][0].url) {
                     if (result[0].parentProperty == 'file') {
                         result[0].parent[result[0].parentProperty] = _.castArray(result[0].parent[result[0].parentProperty])
-                        this.saveEntity[key].forEach(c => {
-                            c.type = '电子文件'
+                        this.saveEntity[key].forEach((c,index)=> {
+                            delete c.isNew
+                            
+                            c.seq = index + 1
+                            // c.type = '电子文件'
                             // if (result[0].parent[result[0].parentProperty][0]){
                             //     c.type = result[0].parent[result[0].parentProperty][0].type
                             // }else{
@@ -598,8 +604,10 @@ export class RecordinfoComponent implements OnInit {
                         });
                     } else {
                         result[0].value.file = result[0].value.file ? _.castArray(result[0].value.file) : []
-                        this.saveEntity[key].forEach(c => {
-                            c.type = '电子文件'
+                        this.saveEntity[key].forEach((c,index)=> {
+                            // c.type = '电子文件'                            
+                            delete c.isNew
+                            c.seq = index + 1
                             if (!result[0].value.file.find(file => (c.url && file.url == c.url))) {
                                 result[0].value.file.push(c)
                             }
@@ -623,14 +631,19 @@ export class RecordinfoComponent implements OnInit {
         if (!this.entity[attrName]) {
             this.entity[attrName] = []
         }
+        let format = name.split('.')
+        format = format[format.length - 1]
         this.entity[attrName].push({
-            'type': attrName,
+            // 'type': attrName,
             'url': 'local:' + data.storagePath,
             'size': size,
             'name': name,
             'checksumType' : "md5" ,
             'checksum': data.md5,
-            'isNew': true
+            'isNew': true,
+            'format' : format,
+            'creation_date': _moment(new Date()).format(_moment.HTML5_FMT.DATETIME_LOCAL),
+            'modify_date' : _moment(new Date()).format(_moment.HTML5_FMT.DATETIME_LOCAL)
         })
     }
 
