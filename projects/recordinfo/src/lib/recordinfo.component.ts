@@ -6,6 +6,7 @@ import { isArray } from 'util';
 import { Tile, DefaultValue } from './recordTile.class';
 import { ErrorMessage } from './message.enum';
 import * as _moment from 'moment';
+const moment = _moment;
 import {
     trigger,
     state,
@@ -258,8 +259,8 @@ export class RecordinfoComponent implements OnInit {
                     'url': 'repo:' + file['s_object_id'],
                     'isNew': true,
                     'format' : format,
-                    'creation_date': _moment(new Date()).format(_moment.HTML5_FMT.DATETIME_LOCAL),
-                    'modify_date' : _moment(new Date()).format(_moment.HTML5_FMT.DATETIME_LOCAL)
+                    'creation_date': moment(new Date()).format(moment.HTML5_FMT.DATETIME_LOCAL),
+                    'modify_date' : moment(new Date()).format(moment.HTML5_FMT.DATETIME_LOCAL)
                 })
             })        
             this.loading = false
@@ -642,8 +643,8 @@ export class RecordinfoComponent implements OnInit {
             'checksum': data.md5,
             'isNew': true,
             'format' : format,
-            'creation_date': _moment(new Date()).format(_moment.HTML5_FMT.DATETIME_LOCAL),
-            'modify_date' : _moment(new Date()).format(_moment.HTML5_FMT.DATETIME_LOCAL)
+            'creation_date': moment(new Date()).format(moment.HTML5_FMT.DATETIME_LOCAL),
+            'modify_date' : moment(new Date()).format(moment.HTML5_FMT.DATETIME_LOCAL)
         })
     }
 
