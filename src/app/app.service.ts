@@ -13,12 +13,12 @@ export class AppService {
   getRecordInfo() : Promise<any> {
     let params = new URLSearchParams();
     let headers = new Headers()
-    headers.append('accessToken','0d1c269a5ca5abec14c0dff22ec4319e')         
-    params.set('parentId','bf832558718222336')  
+    headers.append('accessToken','68d15bdc44d1b6791f86a5a528570bc2')         
+    params.set('metadataSchemeId','1f31b264-48d5-4e4f-9abc-9cf7c8683a18')  
     params.set('collectionWay','record')
     params.set('actionType','1')
     params.set('sceneCode','erms_zljh')      
-    return this.http.get('./ermsapi/metadata/get_form_base_info',{ headers:headers,search: params })
+    return this.http.get('./ermsapi/metadata/get_form_base_info_by_metadata_scheme_id',{ headers:headers,search: params })
                     .toPromise()
                     .then(res =>{
                         let body = res.json();

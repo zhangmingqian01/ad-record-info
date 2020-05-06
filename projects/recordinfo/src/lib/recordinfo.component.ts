@@ -52,26 +52,26 @@ declare var JSONPath: any;
                         [(ngModel)]="entity[tile.options.attrName]">
                 </div>
                 <div *ngSwitchCase="'radio-button'" class="radio--build--box">
-                    <mat-radio-group [(ngModel)]="entity[tile.options.attrName]" formValidPass [validPass]="validPass" [formValue]="entity[tile.options.attrName]" [formValidOption]="tile.options">
+                    <mat-radio-group [(ngModel)]="entity[tile.options.attrName]" [scene]="scene" formValidPass [validPass]="validPass" [formValue]="entity[tile.options.attrName]" [formValidOption]="tile.options">
                         <mat-radio-button [disabled]="disableEdit" class="single--radio--btn" *ngFor="let radioAttr of tile.options.radioBtnAttrs" [value]="radioAttr">{{radioAttr}}</mat-radio-button>
                     </mat-radio-group>
                 </div>
                 <div *ngSwitchCase="'check-box'" class="radio--build--box">
                     <section  class="example-section form--build--box--input">
                         <mat-checkbox
-                        formValidPass [validPass]="validPass" [formValue]="entity[tile.options.attrName]" [formValidOption]="tile.options"
+                        formValidPass [scene]="scene" [validPass]="validPass" [formValue]="entity[tile.options.attrName]" [formValidOption]="tile.options"
                         [checked]="isChecked(tile,checkBoxAttr)"
                          [disabled]="disableEdit" (change)="toggleCheckbox($event,tile,checkBoxAttr)" *ngFor="let checkBoxAttr of tile.options.checkBoxAttrs"
                             class="example-margin">{{checkBoxAttr}}</mat-checkbox>
                     </section>
                 </div>
                 <div *ngSwitchCase="'select'" class="form--build--box--input--box" >
-                    <select [ngClass]="{'showBorder' : tile.getStyle('inputBorder') == 'show'}" formValidPass [validPass]="validPass" [formValue]="entity[tile.options.attrName]" [formValidOption]="tile.options"  [disabled]="disableEdit" class="form-control form--build--box--input" [(ngModel)]="entity[tile.options.attrName]">
+                    <select [ngClass]="{'showBorder' : tile.getStyle('inputBorder') == 'show'}" formValidPass [scene]="scene" [validPass]="validPass" [formValue]="entity[tile.options.attrName]" [formValidOption]="tile.options"  [disabled]="disableEdit" class="form-control form--build--box--input" [(ngModel)]="entity[tile.options.attrName]">
                         <option *ngFor="let selectAttr of tile.options.selectAttrs" [value]="selectAttr.value">{{selectAttr.displayName}}</option>
                     </select>
                 </div>
                 <div *ngSwitchCase="'text-area'" class="form--build--box--input--box">
-                    <textarea [ngClass]="{'showBorder' : tile.getStyle('inputBorder') == 'show'}" formValidPass [validPass]="validPass" [formValue]="entity[tile.options.attrName]" [formValidOption]="tile.options" [disabled]="disableEdit" class="form-control form--build--box--input textarea--input" [(ngModel)]="entity[tile.options.attrName]"></textarea>
+                    <textarea [ngClass]="{'showBorder' : tile.getStyle('inputBorder') == 'show'}" formValidPass [scene]="scene" [validPass]="validPass" [formValue]="entity[tile.options.attrName]" [formValidOption]="tile.options" [disabled]="disableEdit" class="form-control form--build--box--input textarea--input" [(ngModel)]="entity[tile.options.attrName]"></textarea>
                 </div>
                 <div *ngSwitchCase="'upload'" class="create--record--dialog--upload--box">
                     <span style="margin-left: 8px;">
@@ -103,7 +103,7 @@ declare var JSONPath: any;
 
                 <div *ngSwitchCase="'date'" class="form--build--box--input--box">                    
                     <nz-date-picker
-                    formValidPass [validPass]="validPass" [formValue]="entity[tile.options.attrName]" [formValidOption]="tile.options"
+                    formValidPass [validPass]="validPass" [scene]="scene" [formValue]="entity[tile.options.attrName]" [formValidOption]="tile.options"
                     nzShowTime
                      [ngClass]="{'showBorder' : tile.getStyle('inputBorder')  == 'show'}"  [(ngModel)]="entity[tile.options.attrName]"  class="form-control form--build--box--input" [nzFormat]="tile.options.typeFormat"></nz-date-picker>
                 </div>
@@ -323,8 +323,7 @@ export class RecordinfoComponent implements OnInit {
         let xmlData = this.showTemplateXml
         this.formWidth = Number(this.xotree.parseXML(this.showTemplateXml).data.formWidth) || 700
         let data = this.xotree.parseXML(xmlData).data.saveData
-        data.forEach(option => {
-            console.log(option)
+        data.forEach(option => {            
             if (!option.style) option.style = {}
             option.radioBtnAttrs = _.castArray(option.radioBtnAttrs);
             option.checkBoxAttrs = _.castArray(option.checkBoxAttrs);
@@ -435,15 +434,14 @@ export class RecordinfoComponent implements OnInit {
             tile.options.scene = tile.options.scene || ''
             if (!tile.options.scene) {                
                 // console.log(tile.options.isRequired)
-                if (tile.options.isRequired == 'true' && !this.entity[tile.options.attrName]) {
-                    console.log(this.entity[tile.options.attrName])
+                if (tile.options.isRequired == 'true' && !this.entity[tile.options.attrName]) {                
                     validPass = false
                 } else if (tile.options.valueType == 'int' && _.isNumber(this.entity[tile.options.attrName])) {
                     validPass = false
                 }
                 return
             }
-            if (tile.options.scene.indexOf(this.scene) != -1) {
+            if (tile.options.scene.indexOf(this.scene) != -1 || !this.scene || !tile.options.scene) {
                 if (tile.options.isRequired == 'true' && !this.entity[tile.options.attrName]) {
                     validPass = false
                 } else if (tile.options.valueType == 'int' && _.isNumber(this.entity[tile.options.attrName])) {
