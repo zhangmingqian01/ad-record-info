@@ -1,0 +1,19 @@
+.show--process--detail--dialog{
+    width: 600px;
+    ul{
+        padding: 0;
+        li{
+            list-style: none;
+            display: inline-block;
+            margin-bottom: 8px;
+            width: 32%;
+            margin-right: 2%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            &:nth-child(3n){
+                margin-right: 0;
+            }
+        }
+    }
+}

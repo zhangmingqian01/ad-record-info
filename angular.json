@@ -23,7 +23,7 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/purple-green.css",
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css"
             ],
             "scripts": [
@@ -148,7 +148,7 @@
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
             "tsConfig": "projects/recordinfo/tsconfig.lib.json",
-            "project": "projects/recordinfo/ng-package.json"
+            "project": "projects/recordinfo/ng-package.json"          
           }
         },
         "test": {

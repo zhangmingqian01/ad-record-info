@@ -5,7 +5,9 @@ import { Subscription } from 'rxjs';
 import { isArray } from 'util';
 import { Tile, DefaultValue } from './recordTile.class';
 import { ErrorMessage } from './message.enum';
+import { MatDialog } from '@angular/material';
 import * as _moment from 'moment';
+import { ShowProcessDetailDialog } from './show-process-detail/show-process-detail.dialog';
 const moment = _moment;
 import {
     trigger,
@@ -107,21 +109,30 @@ declare var JSONPath: any;
                     nzShowTime
                      [ngClass]="{'showBorder' : tile.getStyle('inputBorder')  == 'show'}"  [(ngModel)]="entity[tile.options.attrName]"  class="form-control form--build--box--input" [nzFormat]="tile.options.typeFormat"></nz-date-picker>
                 </div>
-                <div *ngSwitchCase="'process-list'" class="form--build--box--input--box stepper">
-                    <mat-horizontal-stepper  labelPosition="bottom" #stepper>
-                        <mat-step *ngFor="let progressNode of progressNodes"  [completed]="false">
-                            <ng-template matStepLabel>
-                                <div class="ode--name"><span>{{progressNode.name}}</span></div>
-                                <div><span>操作人：{{progressNode.operator}}</span></div>
-                                <div><span>操作时间：{{progressNode.operate_date}}</span></div>
-                            </ng-template>
-                          <div class="pro--content--box">
-                            <div *ngFor="let pro of progressNode.property" class="single--pro">
-                              {{pro.title}}：{{pro.content}}
+                <div *ngSwitchCase="'process-list'" class="form--build--box--input--box process--info--wrap">
+
+                    <ul class="process--info--box clearfix">
+                        <li                         
+                            *ngFor="let process of progressNodes;let i = index"
+                            (click)="showProcessDetail(process,$event)"
+                            [ngClass]="{only:progressNodes.length==1}"
+                            class="process--node--box {{process.class}}"
+                        >
+                            <div (click)="$event.stopPropagation()"
+                                *ngIf="
+                                showProcessIcon(i)
+                                ">
+                                <div class="process--list--row--wrap--icon"></div>
                             </div>
-                          </div>
-                        </mat-step>
-                      </mat-horizontal-stepper>
+                            <div>
+                                <div class="head">{{process.name}}</div>
+                                <div class="description">
+                                    <div><span class="MODULES_DATABASE_OPERATOR">操作人</span> : {{process.operator}}  </div>
+                                    <div>{{process.operate_date}}</div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>                  
                 </div>
                 <div *ngSwitchCase="'table'" class="form--build--box--input--box" style="overflow-y: auto;">
                     <table class="table table-bordered">
@@ -212,7 +223,9 @@ export class RecordinfoComponent implements OnInit {
     @Input() baseUrl : string //上传所需url跟地址
     @Input() AuthenticationService : any //用户服务 
     @Input() scene?: string
-    constructor() { }
+    constructor(
+        public dialog: MatDialog
+    ) { }
 
     ngOnInit() {
     }
@@ -263,6 +276,7 @@ export class RecordinfoComponent implements OnInit {
                     'modify_date' : moment(new Date()).format(moment.HTML5_FMT.DATETIME_LOCAL)
                 })
             })        
+            this.initProcess()
             this.loading = false
         } catch (err) {
             console.error(err)
@@ -683,6 +697,66 @@ export class RecordinfoComponent implements OnInit {
         // this.router.navigate(['/previewDoc'], { queryParams: { objectId: res } })
     }
 
+    showProcessIcon(i){
+        let len = this.progressNodes.length
+        return (((((i+1)%5) == 0 && Math.ceil((i+1)/5)%2 != 0) || (i == len - 1 && Math.ceil((i+1)/5)%2 != 0)) || ((((i+1)%5) == 0 && Math.ceil((i+1)/5)%2 == 0) || (i == len - 1 && Math.ceil((i+1)/5)%2 == 0)))
+        &&
+        (i < this.progressNodes.length - 1)
+    }
+
+    initProcess(){
+        var i, j, len, len1, num, ref, results, rows;
+        this.progressNodes.sort(function(a, b) {
+          return parseInt(a.operate_date.toString().replace(/-/g, ''), 10) - parseInt(b.operate_date.toString().replace(/-/g, ''), 10);
+        });
+        ref = this.progressNodes;
+        results = [];
+        for (num = j = 0, len1 = ref.length; j < len1; num = ++j) {
+            let strI = ((i + 1) / 5).toString()
+            rows = ref[num];
+            i = num;
+            len = this.progressNodes.length;
+            if (i == 0){
+                rows["class"] = '_first'
+                continue
+            }
+            if ((i + 1) % 5 === 1 && parseInt(strI) % 2 !== 0) {
+                if (i === len - 1) {
+                rows["class"] = 'whole_last_right';
+                continue;
+                }
+                results.push(rows["class"] = '_last');
+            } else if ((i + 1) % 5 === 1 && parseInt(strI) % 2 === 0) {
+                if (i === len - 1) {
+                rows["class"] = 'whole_last_left';
+                continue;
+                }
+                results.push(rows["class"] = '_first');
+            } else if ((((i + 1) % 5) === 0 && Math.ceil((i + 1) / 5) % 2 !== 0) || (i === len - 1 && Math.ceil((i + 1) / 5) % 2 !== 0)) {
+                results.push(rows["class"] = 'last');
+            } else if ((((i + 1) % 5) === 0 && Math.ceil((i + 1) / 5) % 2 === 0) || (i === len - 1 && Math.ceil((i + 1) / 5) % 2 === 0)) {
+                results.push(rows["class"] = 'first');
+            } else if (parseInt(strI) % 2 === 0) {
+                results.push(rows["class"] = 'middle');
+            } else {
+                results.push(rows["class"] = '_middle');
+            }
+        }
+        return results;
+    }
+
+    showProcessDetail(node){
+        let dialogRef = this.dialog.open(ShowProcessDetailDialog, {
+            width: '',
+            disableClose: true,
+            data: {
+              info : node 
+            }
+          });
+          dialogRef.afterClosed().subscribe(res => {           
+          });
+    }
+    
     checkNeedProperty(){
         if (!this.getMulModifeProPertyValues) console.warn(ErrorMessage.needGetMulModifeProPertyValues)
         if (!this.getDefaultValue) console.warn(ErrorMessage.getDefaultValue)
