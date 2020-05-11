@@ -114,7 +114,7 @@ declare var JSONPath: any;
                     <ul class="process--info--box clearfix">
                         <li                         
                             *ngFor="let process of progressNodes;let i = index"
-                            (click)="showProcessDetail(process,$event)"
+                            (click)="showProcessDetail(process)"
                             [ngClass]="{only:progressNodes.length==1}"
                             class="process--node--box {{process.class}}"
                         >
