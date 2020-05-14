@@ -31,11 +31,12 @@ export class FormOtherCompComponent implements OnInit {
   }
 
   chooseCategory(){
-    if (!this._dwClassManageServiceGetMetadataCategoryInfo) return 
+    if (!this._dwClassManageServiceGetMetadataCategoryInfo || !this._dwClassManageServiceGetMetaSysClassList) return 
     let dialogRef = this.dialog.open(FormChooseCategoryDialog, {
       width: '',
       disableClose: true,
       data: {
+        _dwClassManageServiceGetMetaSysClassList : this._dwClassManageServiceGetMetaSysClassList,
         _dwClassManageServiceGetMetadataCategoryInfo : this._dwClassManageServiceGetMetadataCategoryInfo,
         attrValue: this.entity[this.valueAttrName]
       }

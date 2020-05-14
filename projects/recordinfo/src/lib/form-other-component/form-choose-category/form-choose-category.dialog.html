@@ -6,7 +6,9 @@
                 <div class="dialog--content">
                     <div class="row--box">                       
                         <div class="value--box">
-                            <choose-class-module [_dwClassManageServiceGetMetaSysClassList]="data._dwClassManageServiceGetMetaSysClassList" formControlName="metadataSchemeId" id="metadataSchemeId"></choose-class-module>
+                            <choose-class-module
+                             [dwClassManageServiceGetMetaSysClassList]="data._dwClassManageServiceGetMetaSysClassList" 
+                             formControlName="metadataSchemeId" id="metadataSchemeId"></choose-class-module>
                             <mat-error *ngIf="myForm.controls.metadataSchemeId.invalid && myForm.controls.metadataSchemeId.dirty">
                                 {{_formErrorMessageService.getErrorMessage(myForm.controls.metadataSchemeId)}}
                             </mat-error>

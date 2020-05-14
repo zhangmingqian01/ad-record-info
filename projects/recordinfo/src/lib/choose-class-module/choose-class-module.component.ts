@@ -1,4 +1,4 @@
-import { Component, forwardRef, Input, ViewChild } from '@angular/core';
+import { Component, forwardRef, Input, ViewChild,OnInit,OnChanges,SimpleChanges } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, NG_VALUE_ACCESSOR, ValidationErrors, ValidatorFn } from '@angular/forms';
 import * as _ from 'lodash';
 import { NzFormatEmitEvent,NzTreeNodeOptions } from 'ng-zorro-antd';
@@ -17,20 +17,21 @@ export const EXE_COUNTER_VALUE_ACCESSOR: any = {
     styleUrls: ['./choose-class-module.component.scss'],
     providers: [EXE_COUNTER_VALUE_ACCESSOR]
 })
-export class chooseClassModuleContentComponent implements ControlValueAccessor {
+export class chooseClassModuleContentComponent implements ControlValueAccessor ,OnInit,OnChanges{
     @ViewChild('nzTreeSelect') nzTreeSelect: any;
     loading: boolean = false;
     classList: Array<any> = [];
     selectedItem: any = {}
-    @Input() _parentInfo: any = [];
-    @Input() _dwClassManageServiceGetMetaSysClassList : (id:string)=> Promise<any>
+    @Input() dwClassManageServiceGetMetaSysClassList : (id:string)=> Promise<any>
+    @Input() _parentInfo: any = [];    
     constructor(
         private notification: NzNotificationService,
     ) {
-        this.getClassList()
     }
 
-
+    ngOnInit(){
+        
+    }
     get parentInfo() {
         return this._parentInfo;
     }
@@ -58,7 +59,7 @@ export class chooseClassModuleContentComponent implements ControlValueAccessor {
     async onExpandChange(e: Required<NzFormatEmitEvent>){
         const node = e.node;        
         if (node && node.getChildren().length === 0 && node.isExpanded) {
-            let res = await this._dwClassManageServiceGetMetaSysClassList(node.key)
+            let res = await this.dwClassManageServiceGetMetaSysClassList(node.key)
             let children = res.map(c=>{
                 return {
                     key : c.id,
@@ -73,8 +74,8 @@ export class chooseClassModuleContentComponent implements ControlValueAccessor {
         }
     }
 
-    async getClassList() {
-        let res = await this._dwClassManageServiceGetMetaSysClassList('0')
+    async getClassList() {        
+        let res = await this.dwClassManageServiceGetMetaSysClassList('0')
         this.classList = res.map(c=>{
             return {
                 key : c.id,
@@ -98,6 +99,12 @@ export class chooseClassModuleContentComponent implements ControlValueAccessor {
 
     changeSelect(e){
         this.parentInfo = e
+    }
+
+    ngOnChanges(changes: SimpleChanges){        
+        if (changes['dwClassManageServiceGetMetaSysClassList'] && this.dwClassManageServiceGetMetaSysClassList){
+            this.getClassList()
+        }          
     }
 }
 

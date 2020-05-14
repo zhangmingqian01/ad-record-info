@@ -176,6 +176,7 @@ declare var JSONPath: any;
                     [_chooseUsersAccessServiceGetUserByDept]="_chooseUsersAccessServiceGetUserByDept"
                     [_chooseUsersAccessServiceGetUserByRole]="_chooseUsersAccessServiceGetUserByRole"
                     [_dwClassManageServiceGetMetadataCategoryInfo]="_dwClassManageServiceGetMetadataCategoryInfo"
+                    [_dwClassManageServiceGetMetaSysClassList]="_dwClassManageServiceGetMetaSysClassList"
                     [entity]="entity"
                      [componentType]="tile.options.componentType"></form-other-component>
                    
@@ -217,6 +218,7 @@ export class RecordinfoComponent implements OnInit {
     @Input() _chooseUsersAccessServiceGetUserByDept: (groupName: string) => Promise<any>
     @Input() _chooseUsersAccessServiceGetUserByRole: (groupName: string) => Promise<any>
     @Input() _dwClassManageServiceGetMetadataCategoryInfo: (metadataSchemeId: string) => Promise<any>
+    @Input() _dwClassManageServiceGetMetaSysClassList: (parentId:string) => Promise<any>
     @Input() environmentBaseUrl : string 
 
     @Input() ApiUrl : any //接口枚举类型
@@ -764,7 +766,7 @@ export class RecordinfoComponent implements OnInit {
         if (!this._chooseUsersAccessServiceGetRoleList) console.warn(ErrorMessage._chooseUsersAccessServiceGetRoleList)
         if (!this._chooseUsersAccessServiceGetUserByDept) console.warn(ErrorMessage._chooseUsersAccessServiceGetUserByDept)
         if (!this._chooseUsersAccessServiceGetUserByRole) console.warn(ErrorMessage._chooseUsersAccessServiceGetUserByRole)
-        if (!this._dwClassManageServiceGetMetadataCategoryInfo) console.warn(ErrorMessage._dwClassManageServiceGetMetadataCategoryInfo)
+        if (!this._dwClassManageServiceGetMetadataCategoryInfo || !this._dwClassManageServiceGetMetaSysClassList) console.warn(ErrorMessage._dwClassManageServiceGetMetadataCategoryInfo)
         if (!this.environmentBaseUrl) console.warn(ErrorMessage.environmentBaseUrl)
         if (!this.ApiUrl) console.warn(ErrorMessage.ApiUrl)
         if (!this.baseUrl) console.warn(ErrorMessage.baseUrl)

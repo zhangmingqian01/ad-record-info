@@ -8,7 +8,7 @@ import { FormErrorMessageService } from '../../formErrorMessage.service';
     styleUrls: ['./form-choose-category.dialog.scss'],
     providers:[FormErrorMessageService]
 })
-export class FormChooseCategoryDialog {
+export class FormChooseCategoryDialog implements OnInit{
     loading: boolean = false;
     myForm: FormGroup;
     parentInfo : any = []
@@ -20,9 +20,10 @@ export class FormChooseCategoryDialog {
         public dialogRef: MatDialogRef<FormChooseCategoryDialog>,
         public dialog: MatDialog,
         @Inject(MAT_DIALOG_DATA) public data
-    ) {     
+    ) {             
+
     }
-    ngOnInit(){
+    ngOnInit(){  
         this.createForm()
     }
 

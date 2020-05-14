@@ -1,7 +1,7 @@
 # Recordinfo
 record根据xml数据，格式化成可修改的表单
-## 1.2.127
-    去掉了选择门类中对_dwClassManageServiceGetMetaSysClassList的依赖
+## 1.2.128
+    添加了对_dwClassManageServiceGetMetaSysClassList的依赖
 
 ## 1.2.124
     添加了process流程信息的显示

@@ -45,7 +45,7 @@ export class AppComponent {
 
   async getRecordInfo(){
     let res = await this._AppService.getRecordInfo()
-    res.jsonMetadata = JSON.parse(res.jsonMetadataTemplate)
+    res.jsonMetadata = JSON.parse(res.jsonMetadata)
     this.jsonMetadataTemplate = res.jsonMetadata
     this.showTemplateXml = res.showTemplateXml
     this.editStatus = false
@@ -59,5 +59,13 @@ export class AppComponent {
       documentIds = this.files.filter((c:any) => c.isChoosed).map(c => c['jcr:path'])
     }      
     console.log(this.info)
+  }
+
+  get_dwClassManageServiceGetMetaSysClassList(){
+
+  }
+
+  get_dwClassManageServiceGetMetadataCategoryInfo(){
+
   }
 }

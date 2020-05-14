@@ -30,7 +30,9 @@ import { Sizefilter } from './size.pipe';
 import { ShowProcessDetailDialog } from './show-process-detail/show-process-detail.dialog';
 
 @NgModule({
-  declarations: [ShowProcessDetailDialog,Sizefilter,FormUploadComponent,chooseClassModuleContentComponent,LoadingButtonControllerDirective,LoadingMessageComponent,RecordinfoComponent,InitTableValueDirective,fileNameToIconfilter,FormValidPassDirective,FormOtherCompComponent,FormSelectUserDialog,FormChooseCategoryDialog],
+  declarations: [ShowProcessDetailDialog,Sizefilter,FormUploadComponent,chooseClassModuleContentComponent,
+    LoadingButtonControllerDirective,LoadingMessageComponent,RecordinfoComponent,InitTableValueDirective,
+    fileNameToIconfilter,FormValidPassDirective,FormOtherCompComponent,FormSelectUserDialog,FormChooseCategoryDialog],
   imports: [
     CommonModule,
     FileUploadModule,
