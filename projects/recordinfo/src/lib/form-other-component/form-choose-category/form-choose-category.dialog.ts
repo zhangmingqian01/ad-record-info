@@ -6,6 +6,7 @@ import { FormErrorMessageService } from '../../formErrorMessage.service';
     selector: 'form-choose-category-dialog',
     templateUrl: './form-choose-category.dialog.html',
     styleUrls: ['./form-choose-category.dialog.scss'],
+    providers:[FormErrorMessageService]
 })
 export class FormChooseCategoryDialog {
     loading: boolean = false;
