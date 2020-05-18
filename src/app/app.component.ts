@@ -37,7 +37,7 @@ export class AppComponent {
   constructor(
     public _AppService : AppService,
   ){
-
+    
   }
   ngOnInit(){
     this.getRecordInfo()

@@ -17,8 +17,8 @@
                 </div>
             </mat-dialog-content>
             <mat-dialog-actions>
-                <button mat-button type="button" mat-dialog-close>取消</button>
-                <button mat-flat-button type="submit" color="primary"  [disabled]="!myForm.valid" LoadingButtonController [loading]="loading">确定</button>
+                <button mat-button class="mat-button" type="button" mat-dialog-close>取消</button>
+                <button mat-flat-button   class="mat-flat-button mat-primary" type="submit" color="primary"  [disabled]="!myForm.valid" LoadingButtonController [loading]="loading">确定</button>
             </mat-dialog-actions>
             <loading-message *ngIf="loading"></loading-message>
         </div>

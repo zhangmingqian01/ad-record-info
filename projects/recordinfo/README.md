@@ -1,5 +1,9 @@
 # Recordinfo
 record根据xml数据，格式化成可修改的表单
+
+## 1.2.129
+    添加了自定义按钮的类名
+
 ## 1.2.128
     添加了对_dwClassManageServiceGetMetaSysClassList的依赖
 
