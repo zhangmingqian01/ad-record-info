@@ -21,6 +21,7 @@ declare var XML: any;
 declare var $: any;
 declare var jsonPath: any;
 declare var JSONPath: any;
+
 @Component({
     selector: 'amberdata-recordinfo',
     template: `
@@ -694,7 +695,7 @@ export class RecordinfoComponent implements OnInit {
         let preview_window = window.open('')
         // let res = await this._RecordInfoService.getDocumentId(this.id, url)
         let objectId = this.objectPath + url
-        objectId = objectId.replace('\\', '/')
+        objectId = objectId.replace(/\\/g, '/')        
         preview_window.location.href = `${this.environmentBaseUrl}previewDoc?objectId=${objectId}&recordId=${this.id}`
         // this.router.navigate(['/previewDoc'], { queryParams: { objectId: res } })
     }

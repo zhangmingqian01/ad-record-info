@@ -13,12 +13,12 @@ export class AppService {
   getRecordInfo() : Promise<any> {
     let params = new URLSearchParams();
     let headers = new Headers()
-    headers.append('accessToken','c16376b73c27a2cf6c0351244c56142e')         
-    params.set('id','bf833325516193792')  
+    headers.append('accessToken','de49a255d0bed39e2b8d5c80e4fed6f4')         
+    params.set('id','bf833644905103360')  
     params.set('collectionWay','record')
     params.set('actionType','1')
     params.set('sceneCode','erms_zljh')      
-    return this.http.get('./transferapi/transfer_form/get_transfer_form_details',{ headers:headers,search: params })
+    return this.http.get('./ermsapi/record/get_record_details',{ headers:headers,search: params })
                     .toPromise()
                     .then(res =>{
                         let body = res.json();
